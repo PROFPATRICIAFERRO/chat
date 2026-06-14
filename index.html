@@ -1,29 +1,29 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Agro Forte, Futuro Sustentável</title>
-    <!-- Biblioteca para gerar certificado em PNG -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            user-select: none; /* Evita seleção durante drag and drop */
+            user-select: none;
         }
 
         body {
             font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #e0f2e9;
+            background-color: #d9e6b3;
             overflow-x: hidden;
         }
 
-        /* Faixa superior azul com logos */
+        /* Faixa superior azul com logos maiores */
         .top-bar {
             background-color: #0a4d8c;
-            padding: 10px 20px;
+            padding: 12px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -32,21 +32,20 @@
         }
         .logo-container {
             display: flex;
-            gap: 30px;
+            gap: 40px;
             align-items: center;
         }
         .logo-container img {
-            height: 55px;
+            height: 75px;  /* logos maiores */
             object-fit: contain;
             filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
         }
-        /* Navegação abas */
         .tabs-nav {
             display: flex;
             justify-content: center;
             background-color: #2b7a3e;
-            gap: 6px;
-            padding: 8px 10px;
+            gap: 10px;
+            padding: 12px 10px;
             flex-wrap: wrap;
         }
         .tab-btn {
@@ -54,19 +53,17 @@
             border: none;
             font-weight: bold;
             font-size: 1rem;
-            padding: 10px 24px;
+            padding: 10px 26px;
             border-radius: 40px;
             cursor: pointer;
             transition: 0.2s;
             color: #2d3e2b;
-            font-weight: bold;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
         .tab-btn.active {
             background: #f9844a;
             color: white;
             transform: scale(1.02);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
         .tab-content {
             display: none;
@@ -82,7 +79,6 @@
             to { opacity: 1; transform: translateY(0);}
         }
 
-        /* Rodapé */
         footer {
             background-color: #1e5631;
             color: #f5f5dc;
@@ -93,24 +89,37 @@
             margin-top: 20px;
         }
 
-        /* Estilos específicos - Aba 1 (Apresentação) */
+        /* Apresentação com fundo 3.png e personagem principal1.png */
         .apresentacao-container {
-            background: url('imagem principal3.png') center/cover no-repeat;
-            border-radius: 32px;
+            background: url('3.png') center/cover no-repeat;
+            border-radius: 48px;
             padding: 30px 20px;
             position: relative;
-            min-height: 480px;
+            min-height: 520px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }
+        .personagem-e-balao {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            background: rgba(0,0,0,0.2);
+            border-radius: 60px;
+            padding: 20px;
+        }
+        #personagemAdelita {
+            width: 140px;
+            filter: drop-shadow(4px 6px 8px rgba(0,0,0,0.3));
+        }
         .balao-fala {
             background: #fffef7;
             border-radius: 48px;
-            padding: 20px 28px;
-            max-width: 750px;
-            margin: 20px auto;
+            padding: 24px 32px;
+            max-width: 700px;
             box-shadow: 0 15px 25px rgba(0,0,0,0.2);
             border: 3px solid #f9c74f;
             position: relative;
@@ -119,18 +128,11 @@
             color: #2b3b26;
             text-align: center;
         }
-        .balao-fala::before {
-            content: "🐝";
-            font-size: 40px;
-            position: absolute;
-            left: -30px;
-            bottom: -10px;
-        }
         .nome-input-area {
             display: flex;
             justify-content: center;
             gap: 12px;
-            margin: 15px 0;
+            margin: 20px 0 10px;
             flex-wrap: wrap;
         }
         #nomeJogadorInput {
@@ -138,15 +140,14 @@
             font-size: 1rem;
             border-radius: 60px;
             border: 2px solid #2b7a3e;
-            width: 250px;
-            outline: none;
+            width: 260px;
         }
         #salvarNomeBtn {
             background-color: #2b7a3e;
             color: white;
             border: none;
             border-radius: 60px;
-            padding: 10px 24px;
+            padding: 10px 28px;
             font-weight: bold;
             cursor: pointer;
         }
@@ -165,15 +166,14 @@
             border-radius: 50%;
             cursor: pointer;
             transition: 0.2s;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         .indice-fala {
             background: #0a4d8ccc;
             display: inline-block;
-            padding: 4px 14px;
+            padding: 4px 18px;
             border-radius: 40px;
             color: white;
-            margin-top: 10px;
+            margin-top: 12px;
         }
 
         /* Jogo da abelha */
@@ -186,12 +186,13 @@
             align-items: center;
         }
         canvas {
-            background: rgba(0,0,0,0.2);
+            background: #2c5a2a80;
             border-radius: 28px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.3);
             cursor: none;
             max-width: 100%;
             height: auto;
+            border: 2px solid #f9c74f;
         }
         .game-info {
             display: flex;
@@ -205,8 +206,7 @@
             color: white;
             font-weight: bold;
         }
-
-        /* Compostagem drag and drop */
+        /* Compostagem */
         .compost-area {
             display: flex;
             flex-wrap: wrap;
@@ -230,9 +230,6 @@
             cursor: grab;
             transition: 0.1s;
         }
-        .item-drag:active {
-            cursor: grabbing;
-        }
         .composteira {
             background: url('compostagem.png') center/contain no-repeat;
             width: 250px;
@@ -252,7 +249,6 @@
             color: white;
             font-weight: bold;
         }
-
         /* Plantio */
         .plantio-painel {
             background: url('2.png') center/cover no-repeat;
@@ -278,7 +274,6 @@
         .semente-card.selected {
             border-color: #f9844a;
             background: #ffe2b5;
-            transform: scale(1.02);
         }
         .terra-regador {
             display: flex;
@@ -314,17 +309,13 @@
             margin-top: 30px;
             min-height: 150px;
         }
-
-        /* Certificado final */
         .certificado-box {
             background: url('3.png') center/cover no-repeat;
-            background-color: rgba(255,255,200,0.8);
+            background-color: rgba(255,255,200,0.85);
             background-blend-mode: overlay;
             border-radius: 32px;
             padding: 35px 25px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: 0.3s;
         }
         .botao-baixar {
             background: #2b7a3e;
@@ -337,11 +328,6 @@
             margin-top: 20px;
             cursor: pointer;
         }
-        .msg-incompleto {
-            background: #ffd966;
-            padding: 20px;
-            border-radius: 40px;
-        }
         button {
             cursor: pointer;
         }
@@ -352,6 +338,7 @@
             .item-drag { width: 65px; }
             .composteira { width: 180px; height: 160px; }
             .tab-btn { padding: 6px 16px; font-size: 0.8rem;}
+            .logo-container img { height: 50px; }
         }
     </style>
 </head>
@@ -359,26 +346,29 @@
 
 <div class="top-bar">
     <div class="logo-container">
-        <img src="logo.png" alt="logo" onerror="this.src='https://placehold.co/80x55?text=Logo'">
-        <img src="logo1.png" alt="logo1" onerror="this.src='https://placehold.co/80x55?text=Logo1'">
-        <img src="logo3.png" alt="logo3" onerror="this.src='https://placehold.co/80x55?text=Logo3'">
+        <img src="logo.png" alt="logo" onerror="this.src='https://placehold.co/100x75?text=Logo'">
+        <img src="logo1.png" alt="logo1" onerror="this.src='https://placehold.co/100x75?text=Logo1'">
+        <img src="logo3.png" alt="logo3" onerror="this.src='https://placehold.co/100x75?text=Logo3'">
     </div>
-    <div style="color:white; font-weight: bold;">🌱 Agro Forte, Futuro Sustentável</div>
+    <div style="color:white; font-weight: bold; font-size:1.1rem;">🌱 Agro Forte, Futuro Sustentável</div>
 </div>
 
 <div class="tabs-nav">
-    <button class="tab-btn" data-tab="1">🌾 1. Apresentação</button>
+    <button class="tab-btn active" data-tab="1">🌾 1. Apresentação</button>
     <button class="tab-btn" data-tab="2">🐝 2. Jogo da Abelha</button>
     <button class="tab-btn" data-tab="3">♻️ 3. Compostagem</button>
     <button class="tab-btn" data-tab="4">🌽 4. Plantio</button>
     <button class="tab-btn" data-tab="5">🏆 5. Certificado</button>
 </div>
 
-<!-- Aba 1 Apresentação -->
+<!-- Aba 1 Apresentação com fundo 3.png e personagem principal1.png -->
 <div id="tab1" class="tab-content active">
     <div class="apresentacao-container">
-        <div class="balao-fala" id="balaoMensagem">
-            🌻 Carregando mensagens...
+        <div class="personagem-e-balao">
+            <img id="personagemAdelita" src="principal1.png" alt="Adelita" onerror="this.src='https://placehold.co/140x140?text=Adelita'">
+            <div class="balao-fala" id="balaoMensagem">
+                🌻 Carregando...
+            </div>
         </div>
         <div class="nome-input-area">
             <input type="text" id="nomeJogadorInput" placeholder="Digite seu nome" autocomplete="off">
@@ -392,7 +382,7 @@
     </div>
 </div>
 
-<!-- Aba 2 Jogo da Abelha -->
+<!-- Aba 2 Jogo da Abelha (funcionando) -->
 <div id="tab2" class="tab-content">
     <div class="game-container">
         <div class="game-info">
@@ -406,15 +396,11 @@
     </div>
 </div>
 
-<!-- Aba 3 Compostagem Drag and Drop -->
+<!-- Aba 3 Compostagem -->
 <div id="tab3" class="tab-content">
     <div class="compost-area">
-        <div class="itens-lista" id="listaItensCompostagem">
-            <!-- Itens via JS -->
-        </div>
-        <div class="composteira" id="composteiraDrop" data-acertos="0">
-            🧺 Composteira
-        </div>
+        <div class="itens-lista" id="listaItensCompostagem"></div>
+        <div class="composteira" id="composteiraDrop" data-acertos="0">🧺 Composteira</div>
     </div>
     <div style="text-align:center; margin-top:25px;">
         <div class="contador-compost" id="contadorAcertos">Acertos: 0 / 4</div>
@@ -451,9 +437,7 @@
 
 <!-- Aba 5 Certificado -->
 <div id="tab5" class="tab-content">
-    <div id="certificadoContainer" style="min-height: 350px;">
-        <!-- certificado gerado dinamicamente -->
-    </div>
+    <div id="certificadoContainer" style="min-height: 350px;"></div>
 </div>
 
 <footer>
@@ -462,11 +446,11 @@
 </footer>
 
 <script>
-    // ------------------------ GLOBAL -------------------------
+    // ---------------------- Variáveis globais ----------------------
     let nomeJogador = "";
     let missoes = { jogo: false, compostagem: false, plantio: false };
     
-    // ----- FALAS (Apresentação) -----
+    // ---------------------- Apresentação (Falas) ----------------------
     const falas = [
         "Olá! Eu sou a Adelita e vou mostrar como o agro e a natureza trabalham juntos para construir um futuro sustentável! Qual o seu nome?",
         "Você sabia que grande parte dos alimentos que consumimos vem do campo? O agro produz frutas, verduras, legumes, leite, carne, arroz, feijão e muitos outros alimentos essenciais para nossa alimentação.",
@@ -486,28 +470,27 @@
     let falaAtual = 0;
     function atualizarFala() {
         let texto = falas[falaAtual];
-        if (nomeJogador && texto.includes("Qual o seu seu nome") || (falaAtual === 0 && nomeJogador)) {
-            if (nomeJogador) texto = `Olá ${nomeJogador}! Eu sou a Adelita e vou mostrar como o agro e a natureza trabalham juntos para construir um futuro sustentável!`;
-        } else if (nomeJogador && texto.includes("Qual o seu nome?")) {
-            texto = `Olá ${nomeJogador}! ` + texto.replace("Qual o seu nome?", "");
+        if (nomeJogador && falaAtual === 0) {
+            texto = `Olá ${nomeJogador}! Eu sou a Adelita e vou mostrar como o agro e a natureza trabalham juntos para construir um futuro sustentável!`;
+        } else if (nomeJogador && texto.includes("[NOME]")) {
+            texto = texto.replace(/\[NOME\]/g, nomeJogador);
         }
-        // replace genérico para outras falas que tenham placeholder
-        texto = texto.replace(/\[NOME\]/g, nomeJogador || "jogador");
         document.getElementById("balaoMensagem").innerHTML = `🐝 Adelita:<br> "${texto}"`;
         document.getElementById("indiceFala").innerText = `Fala ${falaAtual+1} / ${falas.length}`;
     }
-    document.getElementById("setaProximo").addEventListener("click", () => {
+    document.getElementById("setaProximo")?.addEventListener("click", () => {
         if (falaAtual < falas.length-1) { falaAtual++; atualizarFala(); }
-        else alert("Você concluiu a apresentação! Agora explore as outras abas.");
+        else alert("Você concluiu a apresentação! Explore as missões.");
     });
-    document.getElementById("setaAnterior").addEventListener("click", () => { if (falaAtual > 0) { falaAtual--; atualizarFala(); } });
-    document.getElementById("salvarNomeBtn").addEventListener("click", () => {
+    document.getElementById("setaAnterior")?.addEventListener("click", () => { if (falaAtual > 0) { falaAtual--; atualizarFala(); } });
+    document.getElementById("salvarNomeBtn")?.addEventListener("click", () => {
         let inputNome = document.getElementById("nomeJogadorInput").value.trim();
         if (inputNome) { nomeJogador = inputNome; atualizarFala(); }
         else alert("Digite seu nome!");
     });
-    
-    // ------------------------ JOGO DA ABELHA -------------------------
+    atualizarFala();
+
+    // ---------------------- JOGO DA ABELHA (Totalmente funcional) ----------------------
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
     let gameRunning = true;
@@ -515,11 +498,13 @@
     let floresColetadas = 0;
     let vidas = 3;
     let objetos = [];
-    let animationId;
-    let spawnInterval;
-    const imagensJogo = {};
+    let animationId = null;
+    let spawnInterval = null;
+    let imagensJogo = {};
+
     const itensColetaveis = ['soja.png', 'milho.png', 'flor.png'];
     const itensPerigosos = ['fogo.png', 'fumaca.png'];
+
     function carregarImagensJogo(callback) {
         const imagens = ['abelha b.png', 'soja.png', 'milho.png', 'flor.png', 'fogo.png', 'fumaca.png'];
         let loaded = 0;
@@ -531,6 +516,7 @@
             imagensJogo[img] = i;
         });
     }
+
     function spawnObjeto() {
         if (!gameRunning) return;
         const tipo = Math.random() < 0.7 ? 'flor' : 'perigo';
@@ -551,31 +537,43 @@
             img: imagem
         });
     }
+
     function desenhar() {
         if (!ctx) return;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        if(imagensJogo['abelha b.png']) ctx.drawImage(imagensJogo['abelha b.png'], 40, abelhaY-30, 55, 55);
+        // abelha
+        if(imagensJogo['abelha b.png']) {
+            ctx.drawImage(imagensJogo['abelha b.png'], 40, abelhaY-30, 55, 55);
+        } else {
+            ctx.fillStyle = "#ffcc00";
+            ctx.fillRect(40, abelhaY-25, 50, 50);
+        }
         objetos.forEach(obj => {
             let imgObj = imagensJogo[obj.img];
             if(imgObj) ctx.drawImage(imgObj, obj.x, obj.y, 45, 45);
+            else {
+                ctx.fillStyle = obj.tipo === 'flor' ? "pink" : "red";
+                ctx.fillRect(obj.x, obj.y, 40, 40);
+            }
         });
     }
+
     function atualizarJogo() {
         if(!gameRunning) return;
         for(let i=0; i<objetos.length; i++) {
-            objetos[i].x -= 4;
-            if(objetos[i].x + 40 < 0) { objetos.splice(i,1); i--; continue; }
-            // colisão com abelha
+            objetos[i].x -= 4.5;
+            if(objetos[i].x + 45 < 0) { objetos.splice(i,1); i--; continue; }
             const abelhaRect = {x:40, y:abelhaY-25, w:55, h:55};
             const objRect = {x:objetos[i].x, y:objetos[i].y, w:45, h:45};
-            if(abelhaRect.x < objRect.x+objRect.w && abelhaRect.x+abelhaRect.w > objRect.x && abelhaRect.y < objRect.y+objRect.h && abelhaRect.y+abelhaRect.h > objRect.y) {
+            if(abelhaRect.x < objRect.x+objRect.w && abelhaRect.x+abelhaRect.w > objRect.x &&
+               abelhaRect.y < objRect.y+objRect.h && abelhaRect.y+abelhaRect.h > objRect.y) {
                 if(objetos[i].tipo === 'flor') {
                     floresColetadas++;
                     document.getElementById('floresColetadas').innerText = floresColetadas;
                     if(floresColetadas >= 10) {
                         gameRunning = false;
                         clearInterval(spawnInterval);
-                        document.getElementById('gameStatusMsg').innerText = "🎉 Parabéns! Você salvou as abelhas! Missão concluída! 🌸";
+                        document.getElementById('gameStatusMsg').innerText = "🎉 Parabéns! Missão Abelha concluída! 🌸";
                         missoes.jogo = true;
                         cancelAnimationFrame(animationId);
                         return;
@@ -586,7 +584,7 @@
                     if(vidas <= 0) {
                         gameRunning = false;
                         clearInterval(spawnInterval);
-                        document.getElementById('gameStatusMsg').innerText = "❌ Fumaça e fogo prejudicaram a abelha. Clique em Reiniciar!";
+                        document.getElementById('gameStatusMsg').innerText = "❌ A fumaça e o fogo prejudicaram a abelha. Reinicie!";
                         cancelAnimationFrame(animationId);
                         return;
                     }
@@ -598,6 +596,7 @@
         desenhar();
         animationId = requestAnimationFrame(atualizarJogo);
     }
+
     function iniciarJogo() {
         if(animationId) cancelAnimationFrame(animationId);
         if(spawnInterval) clearInterval(spawnInterval);
@@ -608,20 +607,22 @@
         abelhaY = canvas.height/2;
         document.getElementById('floresColetadas').innerText = "0";
         document.getElementById('vidasAbelha').innerText = "3";
-        document.getElementById('gameStatusMsg').innerText = "🐝 Pegue 10 flores! Evite fogo e fumaça!";
+        document.getElementById('gameStatusMsg').innerHTML = "🐝 Pegue 10 flores! Evite fogo e fumaça!";
         missoes.jogo = false;
-        spawnInterval = setInterval(() => { if(gameRunning) spawnObjeto(); }, 1000);
+        spawnInterval = setInterval(() => { if(gameRunning) spawnObjeto(); }, 950);
         animationId = requestAnimationFrame(atualizarJogo);
     }
+
     window.addEventListener('keydown', (e) => {
-        if(document.getElementById('tab2').classList.contains('active')) {
-            if(e.key === 'ArrowUp') { abelhaY = Math.max(30, abelhaY - 25); e.preventDefault(); }
-            if(e.key === 'ArrowDown') { abelhaY = Math.min(canvas.height-30, abelhaY + 25); e.preventDefault(); }
+        if(document.getElementById('tab2').classList.contains('active') && gameRunning) {
+            if(e.key === 'ArrowUp') { abelhaY = Math.max(35, abelhaY - 28); e.preventDefault(); }
+            if(e.key === 'ArrowDown') { abelhaY = Math.min(canvas.height-35, abelhaY + 28); e.preventDefault(); }
         }
     });
-    document.getElementById('resetGameBtn').addEventListener('click', () => { iniciarJogo(); });
-    
-    // ------------------------ COMPOSTAGEM DRAG AND DROP -------------------------
+    document.getElementById('resetGameBtn')?.addEventListener('click', () => { iniciarJogo(); });
+    carregarImagensJogo(() => { iniciarJogo(); });
+
+    // ---------------------- COMPOSTAGEM DRAG AND DROP ----------------------
     const itensCompost = [
         { nome: "melancia", img: "melancia.png", correto: true, usado: false },
         { nome: "banana", img: "banana.png", correto: true, usado: false },
@@ -633,6 +634,7 @@
     let acertosComp = 0;
     function renderizarItensCompost() {
         const container = document.getElementById('listaItensCompostagem');
+        if(!container) return;
         container.innerHTML = '';
         itensCompost.forEach((item, idx) => {
             if(item.usado) return;
@@ -641,7 +643,6 @@
             img.className = 'item-drag';
             img.draggable = true;
             img.setAttribute('data-idx', idx);
-            img.setAttribute('data-correto', item.correto);
             img.addEventListener('dragstart', (e) => {
                 e.dataTransfer.setData('text/plain', idx);
                 e.dataTransfer.effectAllowed = 'copy';
@@ -649,40 +650,41 @@
             container.appendChild(img);
         });
         document.getElementById('contadorAcertos').innerText = `Acertos: ${acertosComp} / 4`;
-        if(acertosComp === 4) {
+        if(acertosComp === 4 && !missoes.compostagem) {
             document.getElementById('msgCompost').innerHTML = "✅ Compostagem concluída! Parabéns! Indo para o plantio...";
             missoes.compostagem = true;
             setTimeout(() => { document.querySelector('.tab-btn[data-tab="4"]').click(); }, 1800);
         }
     }
-    const composteiraDiv = document.getElementById('composteiraDrop');
-    composteiraDiv.addEventListener('dragover', (e) => { e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; });
-    composteiraDiv.addEventListener('drop', (e) => {
-        e.preventDefault();
-        const idx = parseInt(e.dataTransfer.getData('text/plain'));
-        const item = itensCompost[idx];
-        if(!item || item.usado) return;
-        if(item.correto) {
-            item.usado = true;
-            acertosComp++;
-            document.getElementById('msgCompost').innerHTML = "🌱 Correto! Ótimo resíduo para adubo!";
-            setTimeout(() => document.getElementById('msgCompost').innerHTML = "", 1000);
-            renderizarItensCompost();
-        } else {
-            document.getElementById('msgCompost').innerHTML = "❌ Isso não é orgânico! Não vai para compostagem. Tente novamente!";
-            setTimeout(() => document.getElementById('msgCompost').innerHTML = "", 1200);
-        }
-    });
+    const composteira = document.getElementById('composteiraDrop');
+    if(composteira) {
+        composteira.addEventListener('dragover', (e) => { e.preventDefault(); });
+        composteira.addEventListener('drop', (e) => {
+            e.preventDefault();
+            const idx = parseInt(e.dataTransfer.getData('text/plain'));
+            const item = itensCompost[idx];
+            if(!item || item.usado) return;
+            if(item.correto) {
+                item.usado = true;
+                acertosComp++;
+                document.getElementById('msgCompost').innerHTML = "🌱 Correto! Ótimo para adubo!";
+                setTimeout(() => document.getElementById('msgCompost').innerHTML = "", 1000);
+                renderizarItensCompost();
+            } else {
+                document.getElementById('msgCompost').innerHTML = "❌ Isso não é orgânico! Tente novamente.";
+                setTimeout(() => document.getElementById('msgCompost').innerHTML = "", 1200);
+            }
+        });
+    }
     renderizarItensCompost();
-    
-    // ------------------------ PLANTIO -------------------------
+
+    // ---------------------- PLANTIO ----------------------
     let sementeEscolhida = null;
     let plantioConcluido = false;
     function resetPlantioUI() {
         document.getElementById('sementesArea').style.display = 'flex';
         document.getElementById('plantioEtapa2').style.display = 'none';
         document.getElementById('telaFinalPlantio').style.display = 'none';
-        plantioConcluido = false;
     }
     document.querySelectorAll('.semente-card').forEach(card => {
         card.addEventListener('click', () => {
@@ -692,47 +694,47 @@
             document.getElementById('plantioEtapa2').style.display = 'block';
         });
     });
-    const regador = document.getElementById('regadorImg');
-    regador.addEventListener('click', () => {
-        if(!sementeEscolhida || plantioConcluido) return;
-        // animação rega
-        regador.style.transform = 'rotate(15deg)';
-        setTimeout(() => regador.style.transform = '', 300);
-        const plantaDiv = document.getElementById('plantaCrescendo');
-        plantaDiv.innerHTML = '<img src="plantinha.png" width="100" id="plantinhaAnim">';
-        setTimeout(() => {
-            let plantaCrescida = '';
-            if(sementeEscolhida === 'milho') plantaCrescida = '<img src="milhocresce.png" width="130"> 🌽 Milho crescido!';
-            else if(sementeEscolhida === 'tomate') plantaCrescida = '<img src="tomatecresce.png" width="130"> 🍅 Tomateiro frutificado!';
-            else plantaCrescida = '<img src="sojacrece.png" width="130"> 🌱 Soja desenvolvida!';
-            plantaDiv.innerHTML = plantaCrescida;
-            plantioConcluido = true;
-            missoes.plantio = true;
-            // Tela final após plantio
+    const regadorImg = document.getElementById('regadorImg');
+    if(regadorImg) {
+        regadorImg.addEventListener('click', () => {
+            if(!sementeEscolhida || plantioConcluido) return;
+            regadorImg.style.transform = 'rotate(15deg)';
+            setTimeout(() => regadorImg.style.transform = '', 300);
+            const plantaDiv = document.getElementById('plantaCrescendo');
+            plantaDiv.innerHTML = '<img src="plantinha.png" width="100" id="plantinhaAnim">';
             setTimeout(() => {
-                document.getElementById('plantioEtapa2').style.display = 'none';
-                const telaFinal = document.getElementById('telaFinalPlantio');
-                telaFinal.style.display = 'block';
-                const msgFinal = `Parabéns, ${nomeJogador || "Herói"}!<br>Você ajudou as abelhas, fez compostagem, plantou uma semente e cuidou da sua planta até ela crescer.<br><br>Muito obrigada pela sua ajuda!<br>Agora você é um verdadeiro AgroHerói do Futuro Sustentável.<br><strong>Agro Forte, Futuro Sustentável: equilíbrio entre produção e meio ambiente.</strong>`;
-                document.getElementById('mensagemFinalPlantio').innerHTML = msgFinal;
-                setTimeout(() => { document.querySelector('.tab-btn[data-tab="5"]').click(); }, 3500);
-            }, 800);
-        }, 2000);
-    });
-    
-    // ------------------------ CERTIFICADO -------------------------
+                let plantaCrescida = '';
+                if(sementeEscolhida === 'milho') plantaCrescida = '<img src="milhocresce.png" width="130"> 🌽 Milho crescido!';
+                else if(sementeEscolhida === 'tomate') plantaCrescida = '<img src="tomatecresce.png" width="130"> 🍅 Tomateiro!';
+                else plantaCrescida = '<img src="sojacrece.png" width="130"> 🌱 Soja desenvolvida!';
+                plantaDiv.innerHTML = plantaCrescida;
+                plantioConcluido = true;
+                missoes.plantio = true;
+                setTimeout(() => {
+                    document.getElementById('plantioEtapa2').style.display = 'none';
+                    const telaFinal = document.getElementById('telaFinalPlantio');
+                    telaFinal.style.display = 'block';
+                    const msgFinal = `Parabéns, ${nomeJogador || "Herói"}!<br>Você ajudou as abelhas, fez compostagem, plantou uma semente e cuidou da sua planta até ela crescer.<br><br>Muito obrigada pela sua ajuda!<br>Agora você é um verdadeiro AgroHerói do Futuro Sustentável.<br><strong>Agro Forte, Futuro Sustentável: equilíbrio entre produção e meio ambiente.</strong>`;
+                    document.getElementById('mensagemFinalPlantio').innerHTML = msgFinal;
+                    setTimeout(() => { document.querySelector('.tab-btn[data-tab="5"]').click(); }, 3000);
+                }, 800);
+            }, 2000);
+        });
+    }
+
+    // ---------------------- CERTIFICADO FINAL ----------------------
     function atualizarCertificado() {
         const container = document.getElementById('certificadoContainer');
         if(!missoes.jogo || !missoes.compostagem || !missoes.plantio || !nomeJogador) {
-            container.innerHTML = `<div class="msg-incompleto">⚠️ Para obter o certificado, complete todas as missões:<br>
+            container.innerHTML = `<div class="msg-incompleto" style="background:#ffd966; padding:20px; border-radius:40px;">⚠️ Para obter o certificado, complete todas as missões:<br>
             ✅ Jogo da Abelha: ${missoes.jogo ? "OK" : "Pendente"}<br>
             ✅ Compostagem: ${missoes.compostagem ? "OK" : "Pendente"}<br>
             ✅ Plantio: ${missoes.plantio ? "OK" : "Pendente"}<br>
-            ✏️ Nome: ${nomeJogador || "Não definido"}<br><br>Complete as atividades nas abas acima!</div>`;
+            ✏️ Nome: ${nomeJogador || "Não definido"}<br><br>Complete nas abas acima!</div>`;
             return;
         }
         container.innerHTML = `
-            <div id="areaCertificado" style="background: url('3.png') center/cover rgba(255,245,200,0.8); background-blend-mode: overlay; padding: 30px; border-radius: 40px; text-align: center;">
+            <div id="areaCertificado" style="background: url('3.png') center/cover rgba(255,245,200,0.85); background-blend-mode: overlay; padding: 30px; border-radius: 40px; text-align: center;">
                 <h1 style="color:#1e5631;">🏅 CERTIFICADO DE AGROHERÓI 🏅</h1>
                 <p style="font-size:1.3rem;">A equipe dos AgroHeróis certifica que</p>
                 <h2 style="color:#f9844a; margin:10px;">${nomeJogador.toUpperCase()}</h2>
@@ -758,7 +760,8 @@
             });
         });
     }
-    // transições de abas e verificação de certificado
+
+    // Alternância de abas
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const tabId = btn.getAttribute('data-tab');
@@ -767,14 +770,9 @@
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             if(tabId === '5') atualizarCertificado();
-            if(tabId === '2' && !missoes.jogo && gameRunning === undefined) iniciarJogo();
+            if(tabId === '2' && !missoes.jogo && (!animationId || !gameRunning)) iniciarJogo();
         });
     });
-    // Inicializar imagens jogo e primeira aba
-    carregarImagensJogo(() => { iniciarJogo(); });
-    atualizarFala();
-    // Prevenir drag padrão nas imagens da compostagem
-    window.addEventListener('dragstart', (e) => { if(!e.target.closest('.item-drag')) e.preventDefault(); });
 </script>
 </body>
 </html>
