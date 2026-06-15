@@ -3,730 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>🌿 Agro Forte, Futuro Sustentável</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            user-select: none;
-        }
-
-        body {
-            font-family: 'Poppins', 'Segoe UI', 'Comic Neue', system-ui, sans-serif;
-            background: linear-gradient(145deg, #cbe6be 0%, #a8d08d 100%);
-            min-height: 100vh;
-        }
-
-        /* Faixa superior azul com logos MAIORES */
-        .top-bar {
-            background: linear-gradient(95deg, #0a4d8c, #0e6ba8);
-            padding: 18px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            box-shadow: 0 8px 18px rgba(0,0,0,0.25);
-            border-bottom: 4px solid #f9c74f;
-        }
-        .logo-container {
-            display: flex;
-            gap: 45px;
-            align-items: center;
-        }
-        .logo-container img {
-            height: 90px;  /* Logos bem maiores */
-            object-fit: contain;
-            filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.3));
-            transition: transform 0.2s;
-        }
-        .logo-container img:hover {
-            transform: scale(1.02);
-        }
-        .top-bar h2 {
-            color: #ffefc0;
-            text-shadow: 2px 2px 0 #2b5e2b;
-            font-size: 1.3rem;
-        }
-
-        /* Abas estilosas */
-        .tabs-nav {
-            display: flex;
-            justify-content: center;
-            background: #1e6b3b;
-            gap: 14px;
-            padding: 15px 15px;
-            flex-wrap: wrap;
-            border-bottom: 3px solid #f9c74f;
-        }
-        .tab-btn {
-            background: #ffe5a3;
-            border: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            padding: 12px 28px;
-            border-radius: 60px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            color: #1f4f1f;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-            font-family: inherit;
-        }
-        .tab-btn.active {
-            background: #f9844a;
-            color: white;
-            transform: scale(1.02);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-        }
-        .tab-btn:hover {
-            background: #fdab6b;
-            color: #2d2b1f;
-        }
-
-        .tab-content {
-            display: none;
-            padding: 30px 25px;
-            min-height: 65vh;
-            animation: fadeSlide 0.4s ease;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        @keyframes fadeSlide {
-            from { opacity: 0; transform: translateY(12px);}
-            to { opacity: 1; transform: translateY(0);}
-        }
-
-        /* Rodapé */
-        footer {
-            background: #174c2a;
-            color: #f9eec1;
-            text-align: center;
-            padding: 20px;
-            font-size: 0.95rem;
-            border-top: 5px solid #f9c74f;
-            margin-top: 30px;
-            font-weight: 500;
-        }
-
-        /* APRESENTAÇÃO (fundo 3.png) */
-        .apresentacao-container {
-            background: url('3.png') center/cover no-repeat, #2c5e2e;
-            border-radius: 64px;
-            padding: 40px 25px;
-            position: relative;
-            min-height: 560px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 20px 30px rgba(0,0,0,0.3);
-            backdrop-filter: brightness(0.98);
-        }
-        .personagem-e-balao {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            background: rgba(0, 0, 0, 0.25);
-            border-radius: 80px;
-            padding: 25px 35px;
-            backdrop-filter: blur(5px);
-        }
-        #personagemAdelita {
-            width: 150px;
-            filter: drop-shadow(8px 8px 12px rgba(0,0,0,0.4));
-            background: #fdf8e7;
-            border-radius: 60px;
-            padding: 8px;
-        }
-        .balao-fala {
-            background: #fffcf0;
-            border-radius: 56px;
-            padding: 28px 38px;
-            max-width: 720px;
-            box-shadow: 0 20px 28px rgba(0,0,0,0.2);
-            border: 4px solid #f9c74f;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #2a4b1e;
-            text-align: center;
-            line-height: 1.4;
-        }
-        .nome-input-area {
-            display: flex;
-            justify-content: center;
-            gap: 18px;
-            margin: 30px 0 15px;
-            flex-wrap: wrap;
-        }
-        #nomeJogadorInput {
-            padding: 12px 25px;
-            font-size: 1.1rem;
-            border-radius: 60px;
-            border: none;
-            outline: none;
-            width: 280px;
-            background: #ffffe0;
-            box-shadow: inset 0 1px 4px #aaa, 0 2px 5px rgba(0,0,0,0.1);
-            font-weight: bold;
-        }
-        #salvarNomeBtn {
-            background: #f4a261;
-            color: white;
-            border: none;
-            border-radius: 60px;
-            padding: 12px 32px;
-            font-weight: bold;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-        }
-        .setas-navegacao {
-            display: flex;
-            gap: 35px;
-            justify-content: center;
-            margin-top: 25px;
-        }
-        .seta-btn {
-            background: #f9844a;
-            color: white;
-            font-size: 2.4rem;
-            border: none;
-            width: 65px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: 0.1s linear;
-            box-shadow: 0 5px 10px black;
-        }
-        .indice-fala {
-            background: #0a4d8cd9;
-            display: inline-block;
-            padding: 6px 24px;
-            border-radius: 40px;
-            color: white;
-            margin-top: 18px;
-            font-weight: bold;
-        }
-
-        /* JOGO DA ABELHA (totalmente funcional) */
-        .game-container {
-            background: url('cenario 1.png') center/cover no-repeat, #34623c;
-            border-radius: 48px;
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-shadow: 0 12px 24px rgba(0,0,0,0.4);
-        }
-        canvas {
-            background: #3f754a;
-            border-radius: 38px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-            cursor: none;
-            max-width: 100%;
-            height: auto;
-            border: 4px solid #f9c74f;
-        }
-        .game-info {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            max-width: 820px;
-            margin: 18px auto;
-            background: #284d21dd;
-            padding: 12px 28px;
-            border-radius: 60px;
-            color: #fff7cf;
-            font-weight: bold;
-            font-size: 1.2rem;
-            backdrop-filter: blur(4px);
-        }
-        #resetGameBtn {
-            background: #e9b35f;
-            border: none;
-            padding: 12px 32px;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1rem;
-            margin-top: 20px;
-            transition: 0.2s;
-            cursor: pointer;
-        }
-
-        /* compostagem e plantio mantidos elegantes */
-        .compost-area {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 50px;
-            background: url('4.png') center/cover no-repeat;
-            border-radius: 52px;
-            padding: 35px;
-        }
-        .itens-lista {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 24px;
-            background: #fff0c0cc;
-            padding: 25px;
-            border-radius: 60px;
-            backdrop-filter: blur(6px);
-        }
-        .item-drag {
-            width: 100px;
-            cursor: grab;
-            transition: 0.1s;
-            background: white;
-            border-radius: 20px;
-            padding: 8px;
-        }
-        .composteira {
-            background: url('compostagem.png') center/contain no-repeat;
-            width: 280px;
-            height: 240px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.4rem;
-            color: #2b4720;
-            text-shadow: 1px 1px white;
-        }
-        .contador-compost {
-            background: #2b7a3e;
-            padding: 10px 28px;
-            border-radius: 40px;
-            color: white;
-            font-weight: bold;
-            font-size: 1.2rem;
-            display: inline-block;
-        }
-        .plantio-painel {
-            background: url('2.png') center/cover no-repeat;
-            border-radius: 48px;
-            padding: 35px;
-        }
-        .semente-card {
-            background: #f9e0a0;
-            border-radius: 70px;
-            padding: 15px 20px;
-            cursor: pointer;
-            transition: 0.2s;
-            font-weight: bold;
-        }
-        .terra-regador {
-            gap: 50px;
-        }
-        #regadorImg {
-            width: 110px;
-            filter: drop-shadow(4px 4px 6px rgba(0,0,0,0.3));
-        }
-        .seta-regador {
-            font-size: 3rem;
-            animation: pisca 0.9s infinite;
-        }
-        @keyframes pisca {
-            0% { opacity: 0.2; transform: translateX(0px);}
-            100% { opacity: 1; transform: translateX(15px);}
-        }
-        .botao-baixar {
-            background: #2b7a3e;
-            padding: 14px 32px;
-            font-size: 1.1rem;
-        }
-        button {
-            cursor: pointer;
-        }
-    </style>
+    <title>AgroHeróis - Agro Forte, Futuro Sustentável</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="top-bar">
-    <div class="logo-container">
-        <img src="logo.png" alt="logo agro" onerror="this.src='https://placehold.co/110x90?text=🌾LOGO'">
-        <img src="logo1.png" alt="logo1" onerror="this.src='https://placehold.co/110x90?text=🐝LOGO1'">
-        <img src="logo3.png" alt="logo3" onerror="this.src='https://placehold.co/110x90?text=🌱LOGO3'">
+<!-- TELA INICIAL -->
+<section id="telaInicial" class="tela ativa">
+    <div class="fundo-inicial-container">
+        <img src="3.png" class="imagem-central" alt="Agro Forte">
     </div>
-    <h2>🌻 Agro Forte · Futuro Sustentável 🌎</h2>
-</div>
-
-<div class="tabs-nav">
-    <button class="tab-btn active" data-tab="1">🌾 1. Apresentação</button>
-    <button class="tab-btn" data-tab="2">🐝 2. Jogo da Abelha</button>
-    <button class="tab-btn" data-tab="3">♻️ 3. Compostagem</button>
-    <button class="tab-btn" data-tab="4">🌽 4. Plantio</button>
-    <button class="tab-btn" data-tab="5">🏆 5. Certificado</button>
-</div>
-
-<!-- Aba 1 -->
-<div id="tab1" class="tab-content active">
-    <div class="apresentacao-container">
-        <div class="personagem-e-balao">
-            <img id="personagemAdelita" src="principal1.png" alt="Adelita" onerror="this.src='https://placehold.co/150x150?text=Adelita🌻'">
-            <div class="balao-fala" id="balaoMensagem">🐝 Carregando...</div>
+    <div class="logos-iniciais">
+        <div class="logos-esquerda">
+            <img src="logo.png" class="logo-animada logo-grande" alt="Logo">
+            <img src="logo2.png" class="logo-animada logo-grande" alt="Logo2">
         </div>
-        <div class="nome-input-area">
-            <input type="text" id="nomeJogadorInput" placeholder="✏️ Digite seu nome aqui" autocomplete="off">
-            <button id="salvarNomeBtn">💾 Salvar Nome</button>
-        </div>
-        <div class="setas-navegacao">
-            <button class="seta-btn" id="setaAnterior">◀</button>
-            <button class="seta-btn" id="setaProximo">▶</button>
-        </div>
-        <div class="indice-fala" id="indiceFala">Fala 1 / 14</div>
-    </div>
-</div>
-
-<!-- Aba 2 JOGO DA ABELHA (FUNCIONAL com desenho próprio) -->
-<div id="tab2" class="tab-content">
-    <div class="game-container">
-        <div class="game-info">
-            <span>🌸 Pontos: <span id="floresColetadas">0</span>/10</span>
-            <span>❤️ Vidas: <span id="vidasAbelha">3</span></span>
-            <span>🎮 ↑ ↓ mover abelha</span>
-        </div>
-        <canvas id="gameCanvas" width="800" height="450" style="background:#558b2f; border-radius: 42px;"></canvas>
-        <button id="resetGameBtn">🔄 RECOMEÇAR JOGO</button>
-        <div id="gameStatusMsg" style="margin-top:16px; background:#2c5a2e; padding:8px 28px; border-radius:50px; color:gold; font-weight:bold;"></div>
-    </div>
-</div>
-
-<!-- Aba 3 Compostagem Drag & Drop -->
-<div id="tab3" class="tab-content">
-    <div class="compost-area">
-        <div class="itens-lista" id="listaItensCompostagem"></div>
-        <div class="composteira" id="composteiraDrop">🧺 Composteira</div>
-    </div>
-    <div style="text-align:center; margin:30px auto;">
-        <div class="contador-compost" id="contadorAcertos">Acertos: 0 / 4</div>
-        <p style="margin-top:18px; background: #fef0c0; display: inline-block; padding: 8px 32px; border-radius: 48px;">🍎 Arraste os orgânicos para dentro da composteira!</p>
-        <div id="msgCompost" style="margin:12px; font-weight: bold;"></div>
-    </div>
-</div>
-
-<!-- Aba 4 Plantio -->
-<div id="tab4" class="tab-content">
-    <div class="plantio-painel">
-        <h3>🌱 ESCOLHA A SEMENTE</h3>
-        <div class="sementes-area" id="sementesArea">
-            <div class="semente-card" data-semente="milho"><img src="sementemilho.png" width="80" onerror="this.src='https://placehold.co/80x80?text=🌽'"><br>Milho</div>
-            <div class="semente-card" data-semente="tomate"><img src="sementetomate.png" width="80" onerror="this.src='https://placehold.co/80x80?text=🍅'"><br>Tomate</div>
-            <div class="semente-card" data-semente="soja"><img src="sementesoja.png" width="80" onerror="this.src='https://placehold.co/80x80?text=🌱'"><br>Soja</div>
-        </div>
-        <div id="plantioEtapa2" style="display: none;">
-            <div class="terra-regador">
-                <img id="terraImg" src="terra.png" width="130" onerror="this.src='https://placehold.co/130x100?text=🌍Terra'">
-                <div class="regador-wrapper">
-                    <img id="regadorImg" src="regua.png" width="100" onerror="this.src='https://placehold.co/100x100?text=💧Regador'">
-                    <div class="seta-regador">👉</div>
-                </div>
-            </div>
-            <div id="plantaCrescendo"></div>
-        </div>
-        <div id="telaFinalPlantio" style="display: none; background: #d9e3b3aa; border-radius: 60px; padding: 25px; margin-top: 20px;">
-            <img src="principal3.png" width="130">
-            <div class="balao-fala" id="mensagemFinalPlantio"></div>
+        <div class="logos-direita">
+            <img src="logo1.png" class="logo-animada logo-grande" alt="Logo1">
         </div>
     </div>
-</div>
+    <div class="centro">
+        <button id="btnComecar" class="botao">COMEÇAR</button>
+    </div>
+    <div class="rodape">
+        <p>jogo desenvolvido por Matheus Souza Nascimento – aluno 2º D Noturno</p>
+        <p>Orientadora: Professora Mestre Patrícia Ariadny Ferro</p>
+        <p>Colégio Estadual Antonio Tortato – NRE Paranavaí</p>
+    </div>
+</section>
 
-<!-- Aba 5 Certificado -->
-<div id="tab5" class="tab-content">
-    <div id="certificadoContainer" style="min-height: 400px;"></div>
-</div>
+<!-- BOTÃO DE MÚSICA -->
+<button id="btnMusica" class="botao-musica">🎵</button>
+<audio id="musicaFundo" loop preload="auto">
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
 
-<footer>
-    🌟 Desenvolvido pelo aluno Matheus – 2º D Noturno<br>
-    Colégio Estadual Antonio Tortato | Professora Patrícia Ferro | NRE Paranavaí
-</footer>
+<!-- INTRODUÇÃO -->
+<section id="introducao" class="tela">
+    <img src="1.png" class="fundo" alt="Fundo">
+    <div class="logos">
+        <img src="logo.png"><img src="logo1.png"><img src="logo2.png">
+    </div>
+    <img src="principal1.png" class="adelita">
+    <div class="caixaDialogo">
+        <div id="textoDialogo"></div>
+        <div id="entradaNome"><input type="text" id="nomeJogador" placeholder="Digite seu nome"></div>
+        <div id="escolhaPersonagem">
+            <h3>Escolha seu personagem</h3>
+            <img src="menina.png" id="menina" class="personagemEscolha">
+            <img src="menino.png" id="menino" class="personagemEscolha">
+        </div>
+        <button id="btnProximo" class="seta">➜</button>
+    </div>
+</section>
 
-<script>
-    // ------------------------- GLOBAL -------------------------
-    let nomeJogador = "";
-    let missoes = { jogo: false, compostagem: false, plantio: false };
+<!-- TRANSIÇÃO 1 (não utilizada) -->
+<section id="transicao1" class="tela">
+    <img src="1.png" class="fundo">
+    <div class="logos"><img src="logo.png"><img src="logo1.png"><img src="logo2.png"></div>
+    <img src="principal2.png" class="adelita">
+    <div class="caixaDialogo"><div id="textoTransicao"></div><button id="btnContinuarTransicao" class="botao">CONTINUAR</button></div>
+</section>
 
-    // ===================== APRESENTAÇÃO =====================
-    const falas = [
-        "Olá! Eu sou a Adelita e vou mostrar como o agro e a natureza trabalham juntos para construir um futuro sustentável! Qual o seu nome?",
-        "Você sabia que grande parte dos alimentos que consumimos vem do campo? O agro produz frutas, verduras, legumes, leite, carne, arroz, feijão...",
-        "O campo e a cidade estão conectados todos os dias. Enquanto os agricultores produzem, a cidade consome e movimenta a economia.",
-        "Mas para que muitos alimentos sejam produzidos, precisamos da ajuda de pequenos heróis da natureza: as abelhas!",
-        "As abelhas realizam a polinização. Ao visitarem as flores, transportam pólen e ajudam as plantas a produzir frutos e sementes.",
-        "Por isso, proteger as abelhas e preservar a natureza é fundamental para garantir alimentos para todos.",
-        "Outra prática importante é a compostagem. Restos orgânicos viram adubo natural!",
-        "Esse adubo enriquece o solo, reduz lixo e faz as plantas crescerem mais fortes.",
-        "Agricultores usam técnicas sustentáveis, economizam água e cuidam da terra.",
-        "Muitos alimentos produzidos pelos agricultores chegam às escolas na merenda escolar nutritiva.",
-        "A agricultura familiar fornece alimentos frescos para comunidades e escolas.",
-        "Quando cuidamos das abelhas, fazemos compostagem, preservamos a natureza, ajudamos o futuro sustentável.",
-        "O agro vai além da produção: cuida das pessoas, da economia e do meio ambiente!",
-        "Vamos juntos fortalecer o campo, proteger a natureza e construir um Agro Forte, Futuro Sustentável! 🌱🐝🚜"
-    ];
-    let falaIdx = 0;
-    function atualizarApresentacao() {
-        let texto = falas[falaIdx];
-        if (nomeJogador && falaIdx === 0) texto = `Olá ${nomeJogador}! Eu sou a Adelita e vou mostrar como o agro e a natureza trabalham juntos!`;
-        document.getElementById("balaoMensagem").innerHTML = `🐝 Adelita:<br> "${texto}"`;
-        document.getElementById("indiceFala").innerText = `💬 Fala ${falaIdx+1} / ${falas.length}`;
-    }
-    document.getElementById("setaProximo").onclick = () => { if (falaIdx < falas.length-1) { falaIdx++; atualizarApresentacao(); } else alert("🌻 Parabéns! Agora parta para as missões!"); };
-    document.getElementById("setaAnterior").onclick = () => { if (falaIdx > 0) { falaIdx--; atualizarApresentacao(); } };
-    document.getElementById("salvarNomeBtn").onclick = () => { let n = document.getElementById("nomeJogadorInput").value.trim(); if(n) { nomeJogador = n; atualizarApresentacao(); } else alert("Digite seu nome!"); };
-    atualizarApresentacao();
+<!-- FASE ABELHA -->
+<section id="faseAbelha" class="tela">
+    <img src="1.png" class="fundo">
+    <div class="logos"><img src="logo.png"><img src="logo1.png"><img src="logo2.png"></div>
+    <div id="hud"><div id="contadorFlores">🌸 Flores: 0 / 10</div><div id="vidas">❤️ Vidas: 3</div></div>
+    <img src="a.png" id="abelha">
+    <div id="objetosJogo"></div>
+</section>
 
-    // ===================== JOGO DA ABELHA =====================
-    const canvas = document.getElementById('gameCanvas');
-    const ctx = canvas.getContext('2d');
-    let jogoAtivo = true;
-    let abelhaY = canvas.height/2;
-    let pontos = 0, vidasAb = 3;
-    let itens = [];
-    let animID = null, spawnID = null;
+<!-- SUCESSO ABELHA -->
+<section id="sucessoAbelha" class="tela">
+    <img src="1.png" class="fundo">
+    <div class="logos"><img src="logo.png"><img src="logo1.png"><img src="logo2.png"></div>
+    <div class="caixaDialogo" style="text-align:center;"><h2>🌸 Missão Cumprida! 🌸</h2><p id="msgSucesso"></p><button id="btnProxCompostagem" class="botao">CONTINUAR</button></div>
+</section>
 
-    // Função que desenha tudo mesmo sem imagens externas
-    function desenharJogo() {
-        if (!ctx) return;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        // desenha abelha sempre visível
-        ctx.shadowBlur = 0;
-        ctx.fillStyle = "#FFC107";
-        ctx.beginPath();
-        ctx.ellipse(70, abelhaY, 28, 24, 0, 0, Math.PI*2);
-        ctx.fill();
-        ctx.fillStyle = "#2c2c2c";
-        ctx.fillRect(50, abelhaY-12, 14, 12);
-        ctx.fillRect(88, abelhaY-12, 14, 12);
-        ctx.fillStyle = "#E85D04";
-        ctx.fillRect(64, abelhaY+14, 28, 8);
-        ctx.beginPath();
-        ctx.moveTo(98, abelhaY-6);
-        ctx.lineTo(110, abelhaY-12);
-        ctx.lineTo(106, abelhaY);
-        ctx.fill();
-        // asas
-        ctx.fillStyle = "#d4f1f9";
-        ctx.beginPath();
-        ctx.ellipse(52, abelhaY-20, 16, 12, -0.5, 0, Math.PI*2);
-        ctx.fill();
-        ctx.fillStyle = "#000";
-        ctx.font = "bold 26px 'Segoe UI'";
-        ctx.fillText("🐝", 50, abelhaY-8);
-        
-        // desenha itens
-        itens.forEach(item => {
-            ctx.fillStyle = item.tipo === "bom" ? "#F9E076" : "#D32F2F";
-            ctx.shadowBlur = 4;
-            ctx.fillRect(item.x, item.y, 42, 42);
-            ctx.fillStyle = item.tipo === "bom" ? "#2E7D32" : "#B71C1C";
-            ctx.font = "28px sans-serif";
-            ctx.fillText(item.tipo === "bom" ? "🌸" : "🔥", item.x+8, item.y+34);
-        });
-        ctx.shadowBlur = 0;
-    }
+<!-- TRANSIÇÃO COMPOSTAGEM -->
+<section id="transicaoCompostagem" class="tela">
+    <img src="1.png" class="fundo">
+    <div class="logos"><img src="logo.png"><img src="logo1.png"><img src="logo2.png"></div>
+    <img src="principal2.png" class="adelita">
+    <div class="caixaDialogo"><div id="textoCompostagem"></div><button id="btnIniciarCompostagem" class="botao" style="display:none;">COMEÇAR</button><button id="btnProxFalaCompostagem" class="seta">➜</button></div>
+</section>
 
-    function atualizarJogo() {
-        if (!jogoAtivo) return;
-        for (let i=0; i<itens.length; i++) {
-            itens[i].x -= 5.5;
-            if (itens[i].x + 50 < 0) { itens.splice(i,1); i--; continue; }
-            // colisão (abelha retângulo aprox)
-            const beeX = 45, beeW = 60;
-            const beeY = abelhaY-28, beeH = 56;
-            const objX = itens[i].x, objY = itens[i].y, objW = 42, objH = 42;
-            if (beeX < objX+objW && beeX+beeW > objX && beeY < objY+objH && beeY+beeH > objY) {
-                if (itens[i].tipo === "bom") {
-                    pontos++;
-                    document.getElementById('floresColetadas').innerText = pontos;
-                    if (pontos >= 10) {
-                        jogoAtivo = false;
-                        clearInterval(spawnID);
-                        document.getElementById('gameStatusMsg').innerText = "🎉 VOCÊ VENCEU! Abelhas salvas! ✅ Missão concluída!";
-                        missoes.jogo = true;
-                        cancelAnimationFrame(animID);
-                        return;
-                    }
-                } else {
-                    vidasAb--;
-                    document.getElementById('vidasAbelha').innerText = vidasAb;
-                    if (vidasAb <= 0) {
-                        jogoAtivo = false;
-                        clearInterval(spawnID);
-                        document.getElementById('gameStatusMsg').innerText = "💀 Fumaça e fogo mataram a abelha. Clique em Recomeçar!";
-                        cancelAnimationFrame(animID);
-                        return;
-                    }
-                }
-                itens.splice(i,1);
-                i--;
-            }
-        }
-        desenharJogo();
-        animID = requestAnimationFrame(atualizarJogo);
-    }
+<!-- FASE COMPOSTAGEM -->
+<section id="compostagemTela" class="tela">
+    <img src="4.png" class="fundo">
+    <div id="composteiraArea"><img src="compostagem.png" id="composteira"></div>
+    <div id="itensCompostagem">
+        <img src="melancia.png" draggable="true" class="item" data-correto="true">
+        <img src="banana.png" draggable="true" class="item" data-correto="true">
+        <img src="maca.png" draggable="true" class="item" data-correto="true">
+        <img src="ovo.png" draggable="true" class="item" data-correto="true">
+        <img src="lata.png" draggable="true" class="item" data-correto="false">
+        <img src="metal.png" draggable="true" class="item" data-correto="false">
+    </div>
+    <div id="contadorCompostagem">Acertos: 0 / 4</div>
+</section>
 
-    function spawnItem() {
-        if (!jogoAtivo) return;
-        const tipo = Math.random() < 0.7 ? "bom" : "ruim";
-        const y = Math.random() * (canvas.height - 70) + 20;
-        itens.push({ x: canvas.width-55, y: y, tipo: tipo });
-    }
+<!-- TRANSIÇÃO PLANTIO -->
+<section id="transicaoPlantio" class="tela">
+    <img src="2.png" class="fundo">
+    <div class="logos"><img src="logo.png"><img src="logo1.png"><img src="logo2.png"></div>
+    <img src="principal1.png" class="adelita">
+    <div class="caixaDialogo"><div id="textoPlantio"></div><button id="btnIniciarPlantio" class="botao" style="display:none;">COMEÇAR</button><button id="btnProxFalaPlantio" class="seta">➜</button></div>
+</section>
 
-    function resetarJogo() {
-        if (animID) cancelAnimationFrame(animID);
-        if (spawnID) clearInterval(spawnID);
-        itens = [];
-        pontos = 0;
-        vidasAb = 3;
-        jogoAtivo = true;
-        abelhaY = canvas.height/2;
-        document.getElementById('floresColetadas').innerText = "0";
-        document.getElementById('vidasAbelha').innerText = "3";
-        document.getElementById('gameStatusMsg').innerHTML = "🐝 Pegue 10 flores/grãos! Evite FOGO e FUMAÇA!";
-        missoes.jogo = false;
-        spawnID = setInterval(spawnItem, 950);
-        animID = requestAnimationFrame(atualizarJogo);
-    }
+<!-- FASE PLANTIO -->
+<section id="plantioTela" class="tela">
+    <img src="2.png" class="fundo">
+    <div id="sementes"></div> <!-- as sementes serão criadas dinamicamente pelo JS -->
+    <div id="areaPlantio">
+        <img src="terra.png" id="terra">
+        <img src="regua.png" id="regador" style="display:none;">
+        <img src="plantinha.png" id="plantinha" style="display:none;">
+        <div id="setaRegador" class="seta-regador">👇</div>
+    </div>
+</section>
 
-    window.addEventListener('keydown', (e) => {
-        if (document.getElementById('tab2').classList.contains('active') && jogoAtivo) {
-            if (e.key === 'ArrowUp') { abelhaY = Math.max(40, abelhaY - 30); e.preventDefault(); }
-            if (e.key === 'ArrowDown') { abelhaY = Math.min(canvas.height-40, abelhaY + 30); e.preventDefault(); }
-        }
-    });
-    document.getElementById('resetGameBtn').onclick = () => resetarJogo();
-    resetarJogo();  // inicia automático
+<!-- TELA FINAL -->
+<section id="telaFinal" class="tela">
+    <img src="1.png" class="fundo">
+    <div class="logos"><img src="logo.png"><img src="logo1.png"><img src="logo2.png"></div>
+    <div class="final-personagens">
+        <img src="principal3.png" class="adelita-final">
+        <img src="galeria.png" class="galeria-final">
+    </div>
+    <div class="caixaDialogo">
+        <h2>Parabéns!</h2>
+        <p id="mensagemFinal"></p>
+        <button id="btnCertificado" class="botao">VER CERTIFICADO</button>
+    </div>
+</section>
 
-    // ===================== COMPOSTAGEM =====================
-    const compostItens = [
-        { nome: "melancia", img: "melancia.png", correto: true, usado: false },
-        { nome: "banana", img: "banana.png", correto: true, usado: false },
-        { nome: "maca", img: "maca.png", correto: true, usado: false },
-        { nome: "ovo", img: "ovo.png", correto: true, usado: false },
-        { nome: "lata", img: "lata.png", correto: false, usado: false },
-        { nome: "metal", img: "metal.png", correto: false, usado: false }
-    ];
-    let acertosComp = 0;
-    function atualizarListaCompost() {
-        const container = document.getElementById('listaItensCompostagem');
-        container.innerHTML = '';
-        compostItens.forEach((item, idx) => {
-            if (item.usado) return;
-            const img = document.createElement('img');
-            img.src = item.img;
-            img.className = 'item-drag';
-            img.draggable = true;
-            img.setAttribute('data-idx', idx);
-            img.addEventListener('dragstart', (e) => e.dataTransfer.setData('text/plain', idx));
-            container.appendChild(img);
-        });
-        document.getElementById('contadorAcertos').innerText = `✅ Acertos: ${acertosComp} / 4`;
-        if (acertosComp === 4 && !missoes.compostagem) {
-            document.getElementById('msgCompost').innerHTML = "✨ PARABÉNS! Compostagem concluída! Vamos para o plantio!";
-            missoes.compostagem = true;
-            setTimeout(() => { document.querySelector('.tab-btn[data-tab="4"]').click(); }, 1600);
-        }
-    }
-    const composteiraDiv = document.getElementById('composteiraDrop');
-    composteiraDiv.addEventListener('dragover', e => e.preventDefault());
-    composteiraDiv.addEventListener('drop', (e) => {
-        e.preventDefault();
-        const idx = parseInt(e.dataTransfer.getData('text/plain'));
-        const item = compostItens[idx];
-        if (!item || item.usado) return;
-        if (item.correto) {
-            item.usado = true;
-            acertosComp++;
-            document.getElementById('msgCompost').innerHTML = "🌿 Correto! Ótimo para adubo! +1";
-            setTimeout(() => document.getElementById('msgCompost').innerHTML = "", 1000);
-            atualizarListaCompost();
-        } else {
-            document.getElementById('msgCompost').innerHTML = "❌ Isso NÃO é orgânico! Tente com resto de frutas/ovos.";
-            setTimeout(() => document.getElementById('msgCompost').innerHTML = "", 1200);
-        }
-    });
-    atualizarListaCompost();
+<!-- CERTIFICADO -->
+<section id="certificadoTela" class="tela">
+    <img src="3.png" class="fundo certificadoFundo">
+    <div id="certificado">
+        <h1>CERTIFICADO DE AGROHERÓI</h1>
+        <h2 id="nomeCertificado"></h2>
+        <p>Concluiu com sucesso todas as missões do projeto<br><strong>Agro Forte, Futuro Sustentável</strong><br>Equilíbrio entre Produção e Meio Ambiente</p>
+        <ul><li>Polinização</li><li>Compostagem</li><li>Plantio</li><li>Sustentabilidade</li></ul>
+        <h3>AGROHERÓI DO FUTURO SUSTENTÁVEL</h3>
+        <p><em>Adelita – AgroHeróis</em></p>
+        <button id="baixarPDF" class="botao">BAIXAR CERTIFICADO (PDF)</button>
+    </div>
+</section>
 
-    // ===================== PLANTIO =====================
-    let sementeSel = null;
-    let plantioFeito = false;
-    document.querySelectorAll('.semente-card').forEach(card => {
-        card.addEventListener('click', () => {
-            if (plantioFeito) return;
-            sementeSel = card.getAttribute('data-semente');
-            document.getElementById('sementesArea').style.display = 'none';
-            document.getElementById('plantioEtapa2').style.display = 'block';
-        });
-    });
-    const regador = document.getElementById('regadorImg');
-    regador.addEventListener('click', () => {
-        if (!sementeSel || plantioFeito) return;
-        regador.style.transform = 'rotate(20deg)';
-        setTimeout(() => regador.style.transform = '', 300);
-        const plantaDiv = document.getElementById('plantaCrescendo');
-        plantaDiv.innerHTML = '<img src="plantinha.png" width="110"><br><span style="background:gold;padding:4px 12px;border-radius:30px;">🌱 regando...</span>';
-        setTimeout(() => {
-            let imgCresc = "";
-            if (sementeSel === 'milho') imgCresc = '<img src="milhocresce.png" width="130"> 🌽 Milho gigante!';
-            else if (sementeSel === 'tomate') imgCresc = '<img src="tomatecresce.png" width="130"> 🍅 Tomateiros frutificando!';
-            else imgCresc = '<img src="sojacrece.png" width="130"> 🌱 Soja viçosa!';
-            plantaDiv.innerHTML = imgCresc;
-            plantioFeito = true;
-            missoes.plantio = true;
-            setTimeout(() => {
-                document.getElementById('plantioEtapa2').style.display = 'none';
-                document.getElementById('telaFinalPlantio').style.display = 'block';
-                document.getElementById('mensagemFinalPlantio').innerHTML = `🌻 Parabéns, ${nomeJogador || "Herói"}! <br> Você ajudou as abelhas, fez compostagem e plantou! Agora é um verdadeiro AGROHERÓI! 🌍<br><strong>Agro Forte, Futuro Sustentável</strong>`;
-                setTimeout(() => { document.querySelector('.tab-btn[data-tab="5"]').click(); }, 3200);
-            }, 800);
-        }, 2100);
-    });
-
-    // ===================== CERTIFICADO =====================
-    function gerarCertificado() {
-        const container = document.getElementById('certificadoContainer');
-        if (!missoes.jogo || !missoes.compostagem || !missoes.plantio || !nomeJogador) {
-            container.innerHTML = `<div style="background:#f3c26f; padding:35px; border-radius:60px;"><h2>🔓 Certificado Bloqueado</h2><p>Complete todas as missões:<br>
-            🐝 Abelha: ${missoes.jogo ? "✅" : "❌"} &nbsp;| ♻️ Compostagem: ${missoes.compostagem ? "✅" : "❌"} &nbsp;| 🌱 Plantio: ${missoes.plantio ? "✅" : "❌"}<br>
-            ✏️ Nome: ${nomeJogador || "não definido"}<br><br> Volte nas abas e finalize!</p></div>`;
-            return;
-        }
-        container.innerHTML = `
-            <div id="certArea" style="background: url('3.png') center/cover #fff8e7; background-blend-mode: overlay; padding: 40px; border-radius: 64px; text-align: center; box-shadow: 0 20px 30px black;">
-                <h1 style="color:#1e5631; font-size:2rem;">🏅 CERTIFICADO DE AGROHERÓI 🏅</h1>
-                <p style="font-size:1.5rem;">A equipe dos AgroHeróis certifica que</p>
-                <h2 style="color:#f9844a; font-size:2rem; margin:15px;">${nomeJogador.toUpperCase()}</h2>
-                <p>concluiu todas as missões do projeto<br><strong>Agro Forte, Futuro Sustentável</strong></p>
-                <p>✓ Polinização e importância das abelhas<br>✓ Compostagem e reciclagem<br>✓ Plantio sustentável<br>✓ Preservação ambiental</p>
-                <p style="font-size:1.3rem;">Recebe o título de:<br><strong style="background:gold; padding:6px 24px; border-radius:50px;">🌿 AGROHERÓI DO FUTURO SUSTENTÁVEL 🌿</strong></p>
-                <button id="baixarCert" class="botao-baixar">📸 BAIXAR CERTIFICADO (PNG)</button>
-            </div>
-        `;
-        document.getElementById('baixarCert')?.addEventListener('click', () => {
-            html2canvas(document.getElementById('certArea'), { scale: 2.2, backgroundColor: '#fdf8e0' }).then(canvas => {
-                let link = document.createElement('a');
-                link.download = `certificado_${nomeJogador}.png`;
-                link.href = canvas.toDataURL();
-                link.click();
-            });
-        });
-    }
-
-    // alternância abas e recarregar certificado
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const id = btn.getAttribute('data-tab');
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            document.getElementById(`tab${id}`).classList.add('active');
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            if (id === '5') gerarCertificado();
-            if (id === '2' && !jogoAtivo) resetarJogo();
-        });
-    });
-</script>
+<script src="script.js"></script>
 </body>
 </html>
